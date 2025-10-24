@@ -46,6 +46,7 @@ To install and run Green-AI-Insights, follow these steps:
     ```
 
 3.  Access the dashboard through your web browser at the address provided in the console output (usually `http://127.0.0.1:8050/`).
+
   ![](assets/Dashboard.png)
 
 ## Data
