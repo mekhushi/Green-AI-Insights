@@ -1,13 +1,12 @@
-# src/app.py
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
 
-# Page config
+
 st.set_page_config(page_title="AI Energy Tracker", layout="wide", page_icon="⚡")
 
-# Custom CSS
+
 st.markdown(
     """
     <style>
@@ -50,7 +49,7 @@ else:
         (df['model'].isin(models))
     ]
 
-# Top metrics
+
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Total Experiments", len(filtered_df))
 col2.metric("Average Accuracy", f"{filtered_df['accuracy'].mean():.2f}")
@@ -59,7 +58,7 @@ col4.metric("Max Green Score", f"{filtered_df['green_score'].max():.2f}")
 
 st.markdown("---")
 
-# Tabs for charts
+
 tab1, tab2, tab3, tab4 = st.tabs(["Emissions vs Accuracy", "Duration vs Accuracy", "CO₂ per Model", "Green Score"])
 
 with tab1:
@@ -104,5 +103,6 @@ st.markdown("---")
 st.subheader("Experiment Details")
 st.dataframe(filtered_df.reset_index(drop=True))
 st.markdown(f"Data last updated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
 
 
