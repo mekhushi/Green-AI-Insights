@@ -1,4 +1,3 @@
-# src/run_experiment.py
 import time
 import argparse
 import pandas as pd
@@ -14,8 +13,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
 from pathlib import Path
 
-# Utils for saving results safely
-def save_experiment(row, file_path="data/emission_results.csv"):
+def save_experiment(row, file_path="../data/emission_results.csv"):
     file_path = Path(file_path)
     file_path.parent.mkdir(parents=True, exist_ok=True)
     if file_path.exists():
@@ -25,7 +23,6 @@ def save_experiment(row, file_path="data/emission_results.csv"):
         df = pd.DataFrame([row])
     df.to_csv(file_path, index=False)
 
-# Dataset loader
 def get_dataset(name):
     if name == "iris":
         X, y = load_iris(return_X_y=True)
@@ -41,7 +38,6 @@ def get_dataset(name):
         raise ValueError(f"Unknown dataset: {name}")
     return train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Model loader
 def get_model(name):
     if name == "logreg":
         return LogisticRegression(max_iter=500)
@@ -62,7 +58,7 @@ def get_model(name):
     else:
         raise ValueError(f"Unknown model: {name}")
 
-# Run a single experiment
+
 def run_experiment(model_name, dataset_name, note=""):
     print(f"Running {model_name} on {dataset_name}...")
     X_train, X_test, y_train, y_test = get_dataset(dataset_name)
@@ -90,7 +86,7 @@ def run_experiment(model_name, dataset_name, note=""):
     save_experiment(row)
     print(f"Saved: {row}")
 
-# CLI or automatic run
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", nargs="*", default=None, help="Models to run")
@@ -98,19 +94,20 @@ if __name__ == "__main__":
     parser.add_argument("--note", default="", help="Optional note for hyperparameters")
     args = parser.parse_args()
 
-    # Define all datasets and models
+
     all_models = ["logreg", "rf", "mlp", "dt", "gb", "svm", "knn", "et"]
     all_datasets = ["iris", "digits", "wine", "breast_cancer", "synthetic"]
 
-    # Select datasets/models based on CLI args
+
     selected_models = args.model if args.model else all_models
     selected_datasets = args.dataset if args.dataset else all_datasets
 
-    # Run all combinations safely
+
     for ds in selected_datasets:
         for m in selected_models:
             try:
                 run_experiment(m, ds, note=args.note)
             except Exception as e:
                 print(f"Failed {m} on {ds}: {e}")
+
 
