@@ -15,7 +15,7 @@ from sklearn.metrics import accuracy_score
 from pathlib import Path
 
 # Utils for saving results safely
-def save_experiment(row, file_path="../data/emission_results.csv"):
+def save_experiment(row, file_path="data/emission_results.csv"):
     file_path = Path(file_path)
     file_path.parent.mkdir(parents=True, exist_ok=True)
     if file_path.exists():
@@ -113,3 +113,4 @@ if __name__ == "__main__":
                 run_experiment(m, ds, note=args.note)
             except Exception as e:
                 print(f"Failed {m} on {ds}: {e}")
+
