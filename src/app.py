@@ -21,7 +21,7 @@ st.markdown(
 st.title("⚡ AI Energy Tracker Dashboard")
 
 # Load CSV
-CSV = Path("./data/emission_results.csv")
+CSV = Path(".../data/emission_results.csv")
 if not CSV.exists():
     st.warning("No experiment results found. Run src/run_experiment.py first.")
     st.stop()
@@ -104,5 +104,6 @@ st.markdown("---")
 st.subheader("Experiment Details")
 st.dataframe(filtered_df.reset_index(drop=True))
 st.markdown(f"Data last updated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
 
 
