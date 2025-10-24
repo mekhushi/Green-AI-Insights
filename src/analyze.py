@@ -1,4 +1,3 @@
-# src/analyze.py
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
@@ -12,13 +11,11 @@ df = pd.read_csv(CSV)
 df['accuracy'] = df['accuracy'].astype(float)
 df['emissions_kg'] = df['emissions_kg'].astype(float)
 
-# Scatter: energy vs accuracy
 fig = px.scatter(df, x="emissions_kg", y="accuracy", color="model",
                  size="duration_s", hover_data=["dataset","note","timestamp"],
                  title="Emissions (kg CO2) vs Accuracy")
 fig.show()
 
-# Save summary CSV
 summary = df.groupby("model").agg({
     "emissions_kg":"mean",
     "accuracy":"mean",
@@ -27,3 +24,4 @@ summary = df.groupby("model").agg({
 }).rename(columns={"timestamp":"runs"})
 summary.to_csv("../data/summary_by_model.csv")
 print("Saved summary_by_model.csv")
+
