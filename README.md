@@ -8,7 +8,7 @@ The increasing complexity and scale of AI models have led to a significant rise 
 
 ![Alt text](assets/pexels-markusspiske-2990612.jpg)
 
-## Introduction
+## Introduction 
 
 Green-AI-Insights is an interactive dashboard designed to analyze the performance and carbon footprint of AI experiments. It aims to promote sustainable machine learning practices by providing insights into the environmental impact of different AI models and training techniques.
 
